@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bhupesh Reddy | Python Full Stack Developer</title>
+    <style>
+        :root {
+            --bg: #050816;
+            --bg-alt: #0b1020;
+            --accent: #4f46e5;
+            --accent-soft: rgba(79, 70, 229, 0.12);
+            --text: #e5e7eb;
+            --muted: #9ca3af;
+            --card: #111827;
+            --border: #1f2937;
+            --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.5);
+            --radius-lg: 18px;
+            --radius-pill: 999px;
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* Layout */
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: linear-gradient(to bottom, rgba(2, 6, 23, 0.95), rgba(2, 6, 23, 0.7), transparent);
+            border-bottom: 1px solid rgba(31, 41, 55, 0.6);
+            backdrop-filter: blur(18px);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.85rem 0;
+        }
+
+        .logo {
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-pill {
+            width: 26px;
+            height: 26px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 0%, #6366f1, #0ea5e9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            padding: 0.2rem 0.4rem;
+            border-radius: 999px;
+            transition: color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+        }
+
+        .nav-links a:hover {
+            color: #e5e7eb;
+            background: rgba(79, 70, 229, 0.12);
+            transform: translateY(-1px);
+        }
+
+        .nav-cta {
+            border-radius: var(--radius-pill);
+            border: 1px solid rgba(129, 140, 248, 0.6);
+            padding: 0.35rem 0.9rem;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: #e5e7eb;
+            background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.25), transparent);
+            box-shadow: 0 14px 30px rgba(15, 23, 42, 0.8);
+        }
+
+        .nav-cta span {
+            font-size: 1.05rem;
+        }
+
+        /* Hero */
+
+        .hero {
+            padding: 3.5rem 0 3rem;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding-top: 2.5rem;
+            }
+            .hero-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+            header {
+                position: static;
+                background: rgba(2, 6, 23, 1);
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+
+        .eyebrow {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.18rem 0.7rem;
+            border-radius: 999px;
+            border: 1px solid rgba(75, 85, 99, 0.9);
+            background: radial-gradient(circle at top left, rgba(148, 163, 184, 0.2), transparent);
+        }
+
+        .eyebrow-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: #22c55e;
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
+        }
+
+        .hero-title {
+            font-size: clamp(2.2rem, 4vw, 3rem);
+            margin: 1rem 0 0.5rem;
+            font-weight: 700;
+        }
+
+        .hero-title span {
+            background: linear-gradient(120deg, #a855f7, #6366f1, #22d3ee);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 0.98rem;
+            color: var(--muted);
+            max-width: 34rem;
+        }
+
+        .hero-subtitle strong {
+            color: #e5e7eb;
+        }
+
+        .hero-actions {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+        }
+
+        .btn-primary,
+        .btn-ghost {
+            font-size: 0.9rem;
+            padding: 0.6rem 1.1rem;
+            border-radius: var(--radius-pill);
+            border: 1px solid transparent;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(120deg, #4f46e5, #0ea5e9);
+            border-color: rgba(129, 140, 248, 0.9);
+            color: #e5e7eb;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.95);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 22px 50px rgba(15, 23, 42, 1);
+        }
+
+        .btn-ghost {
+            background: rgba(15, 23, 42, 0.8);
+            border-color: rgba(55, 65, 81, 0.9);
+            color: var(--muted);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(15, 23, 42, 0.95);
+            border-color: rgba(148, 163, 184, 0.9);
+            transform: translateY(-1px);
+        }
+
+        .hero-meta {
+            margin-top: 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 2.5rem;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .hero-meta-item span {
+            display: block;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: #6b7280;
+        }
+
+        /* Hero card */
+
+        .hero-card {
+            background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.1), transparent),
+                        radial-gradient(circle at bottom, rgba(14, 165, 233, 0.16), #020617);
+            border-radius: 28px;
+            padding: 1.6rem 1.5rem;
+            border: 1px solid rgba(55, 65, 81, 0.9);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-badge-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-bottom: 1.1rem;
+        }
+
+        .pill {
+            padding: 0.16rem 0.7rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.7);
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .hero-main-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #9ca3af;
+        }
+
+        .hero-role {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0.4rem 0 0.2rem;
+        }
+
+        .hero-tech-row {
+            margin-top: 0.6rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            font-size: 0.78rem;
+        }
+
+        .tech-chip {
+            padding: 0.15rem 0.6rem;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(55, 65, 81, 0.9);
+            color: #e5e7eb;
+        }
+
+        .hero-footer {
+            margin-top: 1.4rem;
+            padding-top: 0.9rem;
+            border-top: 1px dashed rgba(55, 65, 81, 0.9);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+
+        .hero-socials {
+            display: flex;
+            gap: 0.6rem;
+        }
+
+        .hero-socials a {
+            padding: 0.25rem 0.7rem;
+            border-radius: 999px;
+            border: 1px solid rgba(75, 85, 99, 0.9);
+            background: rgba(15, 23, 42, 0.95);
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .hero-tagline {
+            font-size: 0.78rem;
+            color: #9ca3af;
+            text-align: right;
+        }
+
+        /* PROFILE PIC */
+
+        .profile-wrap {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+        }
+
+        .profile-photo {
+            width: 86px;
+            height: 86px;
+            border-radius: 999px;
+            overflow: hidden;
+            border: 3px solid rgba(99, 102, 241, 0.22);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            background: linear-gradient(135deg, #111827, #020617);
+            flex-shrink: 0;
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        @media (max-width: 480px) {
+            .profile-photo {
+                width: 74px;
+                height: 74px;
+            }
+        }
+
+        /* Sections */
+
+        section {
+            padding: 2.7rem 0;
+        }
+
+        .section-header {
+            margin-bottom: 1.4rem;
+        }
+
+        .section-kicker {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--muted);
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 0.3rem;
+        }
+
+        /* About section */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+            gap: 1.8rem;
+        }
+
+        @media (max-width: 900px) {
+            .about-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .about-text {
+            font-size: 0.94rem;
+            color: var(--muted);
+        }
+
+        .about-text p {
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .mini-card {
+            background: var(--card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 0.7rem 0.9rem;
+            font-size: 0.85rem;
+        }
+
+        .mini-card strong {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 0.2rem;
+            color: #9ca3af;
+        }
+
+        .about-stats {
+            display: grid;
+            gap: 0.7rem;
+            font-size: 0.87rem;
+        }
+
+        .about-stat-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #6b7280;
+        }
+
+        /* Skills */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 1rem;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 1rem 1rem;
+            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.5);
+            font-size: 0.9rem;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.4rem;
+        }
+
+        .pill-sm {
+            padding: 0.1rem 0.55rem;
+            border-radius: 999px;
+            border: 1px solid rgba(55, 65, 81, 0.9);
+            font-size: 0.78rem;
+            color: #e5e7eb;
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        /* Project */
+
+        .project-card {
+            background: linear-gradient(135deg, var(--card), #020617);
+            border-radius: 22px;
+            border: 1px solid rgba(55, 65, 81, 0.95);
+            padding: 1.2rem 1.1rem;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .project-label {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: #9ca3af;
+        }
+
+        .project-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin: 0.25rem 0;
+        }
+
+        .project-meta {
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin-bottom: 0.6rem;
+        }
+
+        .project-body {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .project-body ul {
+            padding-left: 1rem;
+            margin: 0.5rem 0 0.2rem;
+        }
+
+        .project-body li {
+            margin-bottom: 0.25rem;
+        }
+
+        /* Two-column section layout */
+
+        .two-col {
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+            gap: 1.6rem;
+        }
+
+        @media (max-width: 900px) {
+            .two-col {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        /* Timeline lists */
+
+        .timeline {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: 0.9rem;
+        }
+
+        .timeline li {
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed rgba(55, 65, 81, 0.7);
+        }
+
+        .timeline li:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-title {
+            font-weight: 500;
+        }
+
+        .timeline-meta {
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+
+        /* Contact */
+
+        .contact-card {
+            background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.2), #020617);
+            border-radius: 22px;
+            border: 1px solid rgba(55, 65, 81, 0.95);
+            padding: 1.2rem 1.1rem 1.3rem;
+            box-shadow: var(--shadow-soft);
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.3fr);
+            gap: 1.3rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 800px) {
+            .contact-card {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .contact-list {
+            list-style: none;
+            margin: 0.3rem 0 0;
+            padding: 0;
+        }
+
+        .contact-list li {
+            margin-bottom: 0.4rem;
+        }
+
+        .contact-list span {
+            display: inline-block;
+            width: 68px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #9ca3af;
+        }
+
+        .badge-soft {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.8rem;
+            padding: 0.2rem 0.7rem;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(55, 65, 81, 0.9);
+            color: var(--muted);
+        }
+
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: #6366f1;
+        }
+
+        footer {
+            border-top: 1px solid rgba(31, 41, 55, 0.8);
+            padding: 1rem 0 1.4rem;
+            font-size: 0.8rem;
+            color: #6b7280;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <!-- NAVBAR -->
+    <header>
+        <div class="container nav">
+            <div class="logo">
+                <div class="logo-pill">BR</div>
+                <span>Bhupesh&nbsp;Reddy</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#project">Project</a>
+                <a href="#education">Education</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <a class="nav-cta" href="mailto:reddybhupesh71@gmail.com">
+                <span>●</span>
+                Hire me
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <main class="container">
+        <section class="hero" id="top">
+            <div class="hero-grid">
+                <!-- LEFT: TEXT -->
+                <div>
+                    <div class="eyebrow">
+                        <div class="eyebrow-dot"></div>
+                        Open to opportunities
+                    </div>
+
+                    <h1 class="hero-title">
+                        Python Full Stack Developer<br />
+                        <span>Building clean, end-to-end web solutions</span>
+                    </h1>
+
+                    <p class="hero-subtitle">
+                        I’m <strong>Bhupesh Reddy</strong>, an enthusiastic Python Full Stack Developer with hands-on
+                        experience in <strong>Python, Django, HTML, CSS, JavaScript, SQL</strong>, and
+                        <strong>Machine Learning</strong>. I enjoy developing complete web applications and applying
+                        best practices to solve real-world problems.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="mailto:reddybhupesh71@gmail.com" class="btn-primary">
+                            Contact Me
+                        </a>
+                        <a href="#project" class="btn-ghost">
+                            View Main Project
+                        </a>
+                    </div>
+
+                    <div class="hero-meta">
+                        <div class="hero-meta-item">
+                            <span>Primary Stack</span>
+                            Python · Django · MySQL
+                        </div>
+                        <div class="hero-meta-item">
+                            <span>Interests</span>
+                            Full Stack · Machine Learning · Blockchain
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: CARD WITH PIC -->
+                <aside class="hero-card">
+                    <div class="hero-badge-row">
+                        <div class="pill">Entry-Level · Fresher</div>
+                        <div>Based in India</div>
+                    </div>
+
+                    <div class="profile-wrap">
+                        <div class="profile-photo" title="Bhupesh Reddy profile photo">
+                            
+                            <img src="/img/bhupeshpic.jpg" alt="Profile photo of Bhupesh Reddy" loading="lazy" />
+                        </div>
+                        <div>
+                            <div class="hero-main-label">Current Role</div>
+                            <div class="hero-role">Python Full Stack Developer (Fresher)</div>
+                            <p style="font-size:0.86rem;color:#d1d5db;margin-top:0.2rem;">
+                                Seeking an entry-level opportunity to contribute to a dynamic engineering team and grow as a
+                                developer.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="hero-tech-row">
+                        <span class="tech-chip">Python</span>
+                        <span class="tech-chip">Django</span>
+                        <span class="tech-chip">HTML &amp; CSS</span>
+                        <span class="tech-chip">JavaScript</span>
+                        <span class="tech-chip">React.js</span>
+                        <span class="tech-chip">MySQL</span>
+                        <span class="tech-chip">NumPy · Pandas · ML</span>
+                    </div>
+
+                    <div class="hero-footer">
+                        <div class="hero-socials">
+                            <a href="https://github.com/Bhupesh517" target="_blank" rel="noopener noreferrer">
+                                GitHub
+                            </a>
+                            <a href="http://www.linkedin.com/in/bhupesh-reddy" target="_blank" rel="noopener noreferrer">
+                                LinkedIn
+                            </a>
+                        </div>
+                        <div class="hero-tagline">
+                            Ready to learn fast,<br />build fast &amp; ship clean code.
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about">
+            <div class="section-header">
+                <div class="section-kicker">About</div>
+                <h2 class="section-title">Who I am</h2>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>
+                        I am an enthusiastic <strong>Python Full Stack Developer</strong> with a solid understanding of
+                        both <strong>frontend</strong> and <strong>backend</strong> technologies. I enjoy designing and
+                        building complete web applications that are clean, performant, and maintainable.
+                    </p>
+                    <p>
+                        Beyond development, I am particularly interested in
+                        <strong>Machine Learning</strong> and <strong>Blockchain-based solutions</strong>. My final year
+                        project, a Fake News Discrimination system, allowed me to combine these interests with
+                        real-world impact.
+                    </p>
+                    <p>
+                        I’m dedicated to continuous learning, improving my coding standards, and contributing to a
+                        collaborative team environment.
+                    </p>
+
+                    <div class="about-highlights">
+                        <div class="mini-card">
+                            <strong>Soft Skills</strong>
+                            Team player, quick learner, problem solving, and good communication.
+                        </div>
+                        <div class="mini-card">
+                            <strong>Career Goal</strong>
+                            To grow as a backend / full stack engineer while building reliable, secure applications.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-stats">
+                    <div>
+                        <div class="about-stat-label">Contact</div>
+                        <div>Email: <a href="mailto:reddybhupesh71@gmail.com">reddybhupesh71@gmail.com</a></div>
+                        <div>Phone: <a href="tel:+917569723375">+91 75697 23375</a></div>
+                    </div>
+                    <div>
+                        <div class="about-stat-label">Languages</div>
+                        <div>English, Telugu</div>
+                    </div>
+                    <div>
+                        <div class="about-stat-label">Community</div>
+                        <div>Active NSS participant &amp; event organizer at college.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills">
+            <div class="section-header">
+                <div class="section-kicker">Skills</div>
+                <h2 class="section-title">Tech stack &amp; tools</h2>
+            </div>
+
+            <div class="skills-grid">
+                <div class="card">
+                    <h3>Languages</h3>
+                    <p>Core programming and scripting skills:</p>
+                    <div class="pill-row">
+                        <span class="pill-sm">Python</span>
+                        <span class="pill-sm">SQL</span>
+                        <span class="pill-sm">HTML</span>
+                        <span class="pill-sm">CSS</span>
+                        <span class="pill-sm">JavaScript</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Frameworks &amp; Libraries</h3>
+                    <p>Web &amp; data frameworks I work with:</p>
+                    <div class="pill-row">
+                        <span class="pill-sm">Django</span>
+                        <span class="pill-sm">React.js</span>
+                        <span class="pill-sm">NumPy</span>
+                        <span class="pill-sm">Pandas</span>
+                        <span class="pill-sm">Matplotlib</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Databases &amp; Tools</h3>
+                    <p>Environment and productivity tools:</p>
+                    <div class="pill-row">
+                        <span class="pill-sm">MySQL</span>
+                        <span class="pill-sm">VS Code</span>
+                        <span class="pill-sm">Git</span>
+                        <span class="pill-sm">GitHub</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECT -->
+        <section id="project">
+            <div class="section-header">
+                <div class="section-kicker">Project</div>
+                <h2 class="section-title">Fake News Discrimination using ML &amp; Blockchain</h2>
+            </div>
+
+            <div class="project-card">
+                <div class="project-label">Capstone Project</div>
+                <div class="project-title">
+                    Fake News Discrimination Using Machine Learning &amp; Blockchain
+                </div>
+                <div class="project-meta">
+                    <strong>Tech:</strong> Python, Django, Machine Learning (ANN, LSTM, XGBoost), Blockchain, MySQL
+                </div>
+
+                <div class="project-body">
+                    <p>
+                        Developed a <strong>decentralized news verification system</strong> that detects fake news and
+                        secures content using <strong>Blockchain</strong> technology.
+                    </p>
+                    <ul>
+                        <li>
+                            Implemented multiple ML models (ANN, LSTM, XGBoost) to classify news as real or fake, with
+                            <strong>98%+ accuracy</strong>.
+                        </li>
+                        <li>
+                            Integrated <strong>Blockchain</strong> to ensure tamper-proof storage of verified content,
+                            providing integrity and transparency.
+                        </li>
+                        <li>
+                            Built the <strong>backend using Django</strong>, connecting machine learning models with a
+                            user-friendly web interface.
+                        </li>
+                        <li>
+                            Designed system to demonstrate how AI + Blockchain can reduce misinformation.
+                        </li>
+                    </ul>
+
+                    <p style="margin-top:0.7rem;">
+                        <em>Areas covered:</em> Machine Learning, Deep Learning, Blockchain basics, secure storage,
+                        backend APIs with Django.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATION + CERTIFICATIONS -->
+        <section id="education">
+            <div class="section-header">
+                <div class="section-kicker">Background</div>
+                <h2 class="section-title">Education &amp; certifications</h2>
+            </div>
+
+            <div class="two-col">
+                <div>
+                    <h3 style="font-size:0.95rem;margin-top:0;margin-bottom:0.4rem;">Education</h3>
+                    <ul class="timeline">
+                        <li>
+                            <div class="timeline-title">
+                                B.Tech in Computer Science &amp; Engineering
+                            </div>
+                            <div class="timeline-meta">
+                                R.S.R Engineering College, JNTUA · 2021 – 2025 · 70%
+                            </div>
+                        </li>
+                        <li>
+                            <div class="timeline-title">Intermediate</div>
+                            <div class="timeline-meta">
+                                Sri Venu Gopala Swamy Jr. College, BIEAP · 2021 · 70%
+                            </div>
+                        </li>
+                        <li>
+                            <div class="timeline-title">SSC</div>
+                            <div class="timeline-meta">
+                                Ravindra Bharathi EM High School, BSEAP · 2019 · 82%
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 style="font-size:0.95rem;margin-top:0;margin-bottom:0.4rem;">Certifications &amp; Activities</h3>
+                    <ul class="timeline">
+                        <li>
+                            <div class="timeline-title">Python Course</div>
+                            <div class="timeline-meta">Skill Dzire</div>
+                        </li>
+                        <li>
+                            <div class="timeline-title">Cloud Computing</div>
+                            <div class="timeline-meta">ExcelR</div>
+                        </li>
+                        <li>
+                            <div class="timeline-title">NSS &amp; Events</div>
+                            <div class="timeline-meta">
+                                Active NSS participant and organizer of technical &amp; cultural events at college.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+            <div class="section-header">
+                <div class="section-kicker">Contact</div>
+                <h2 class="section-title">Let’s work together</h2>
+            </div>
+
+            <div class="contact-card">
+                <div>
+                    <p>
+                        I’m currently looking for <strong>entry-level roles</strong> as a Python / Django / Full Stack
+                        Developer. If you think I could be a good fit for your team, feel free to reach out — I’ll be
+                        happy to connect.
+                    </p>
+                    <ul class="contact-list">
+                        <li>
+                            <span>Email</span>
+                            <a href="mailto:reddybhupesh71@gmail.com">reddybhupesh71@gmail.com</a>
+                        </li>
+                        <li>
+                            <span>Phone</span>
+                            <a href="tel:+917569723375">+91 75697 23375</a>
+                        </li>
+                        <li>
+                            <span>GitHub</span>
+                            <a href="https://github.com/Bhupesh517" target="_blank" rel="noopener noreferrer">
+                                github.com/Bhupesh517
+                            </a>
+                        </li>
+                        <li>
+                            <span>LinkedIn</span>
+                            <a href="http://www.linkedin.com/in/bhupesh-reddy" target="_blank" rel="noopener noreferrer">
+                                bhupesh-reddy
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="badge-soft">
+                        <div class="badge-dot"></div>
+                        Open to: Python / Django / Full Stack Developer (Fresher)
+                    </div>
+                    <p style="margin-top:0.8rem;">
+                        <strong>Why hire me?</strong>
+                    </p>
+                    <ul style="padding-left:1rem;margin-top:0.2rem;">
+                        <li>Strong foundation in Python, Django, SQL, and web basics.</li>
+                        <li>Hands-on project using Machine Learning and Blockchain.</li>
+                        <li>Quick learner, disciplined, and willing to work hard.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        © <span id="year"></span> Bhupesh Reddy · Built with HTML &amp; CSS
+    </footer>
+</div>
+
+<script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
